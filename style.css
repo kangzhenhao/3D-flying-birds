@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgb(201, 236, 253);
+  /* 底部阴影 */
+  filter: drop-shadow(0 150px 10px rgba(0, 0, 0, 0.2));
+}
+
+.sky {
+  animation: fly 10s infinite linear;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.sky div {
+  /* 所有子元素在3D空间中呈现 */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.bird div {
+  position: absolute;
+}
+
+.bird .body {
+  width: 30px;
+  height: 40px;
+  background-color: rgb(205, 216, 221);
+  transform-origin: 100% 0;
+}
+
+.head {
+  top: -30px;
+  border-bottom: 30px solid rgb(150, 180, 243);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  transform-origin: 100% 0;
+}
+
+.left-wing {
+  left: -30px;
+  height: 30px;
+  border-right: 30px solid rgb(187, 196, 238);
+  border-bottom: 10px solid transparent;
+  --deg: 30deg;
+  --deg1: -30deg;
+  transform-origin: 100% 100%;
+  animation: wing 2s infinite ease;
+}
+
+.left-wing::after {
+  content: "";
+  position: absolute;
+  left: -30px;
+  border-right: 30px solid rgb(188, 218, 243);
+  border-bottom: 30px solid transparent;
+  transform-origin: 100% 0;
+  animation: wing 2s infinite ease;
+}
+
+.right-wing {
+  left: 30px;
+  height: 30px;
+  border-left: 30px solid rgb(144, 233, 255);
+  border-bottom: 10px solid transparent;
+  --deg: -30deg;
+  --deg1: 30deg;
+  transform-origin: 0 100%;
+  animation: wing 2s infinite ease;
+}
+
+.right-wing::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  border-left: 30px solid rgb(162, 184, 255);
+  border-bottom: 30px solid transparent;
+  transform-origin: 0 100%;
+  animation: wing 2s infinite ease;
+}
+
+.right-tail {
+  top: 38px;
+  border-top: 40px solid rgb(255, 158, 128);
+  border-left: 30px solid transparent;
+  transform: rotateX(-10deg);
+  transform-origin: 0 0;
+}
+
+.left-tail {
+  top: 38px;
+  border-top: 40px solid rgb(188, 218, 243);
+  border-right: 30px solid transparent;
+  transform: rotateX(-10deg);
+  transform-origin: 0 0;
+}
+
+@keyframes fly {
+  0% {
+    transform: rotateX(-120deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(-120deg) rotateZ(360deg);
+  }
+}
+
+@keyframes wing {
+  0%, 100% {
+    transform: rotateY(var(--deg));
+  }
+  50% {
+    transform: rotateY(var(--deg1));
+  }
+}
